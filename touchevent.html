@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no" />
+    <title>Touch Eventsサンプル</title>
+    <script>
+      window.document.addEventListener("touchstart", function(event){
+        event.preventDefault();
+         
+        var result = document.getElementById("result");
+          result.innerHTML = 
+            "clientX:"+ event.touches[0].clientX+ "<br>" + 
+            "clientY:"+ event.touches[0].clientY;
+      }, true);
+       
+      window.document.addEventListener("touchmove", function(event){
+        event.preventDefault();
+         
+        var result = document.getElementById("result");
+          result.innerHTML = 
+            "clientX:"+ event.touches[0].clientX+ "<br>" + 
+            "clientY:"+ event.touches[0].clientY;
+      }, true);
+       
+      window.document.addEventListener("touchend", function(event){
+        event.preventDefault();
+         
+        var result = document.getElementById("result");
+          result.innerHTML = "";
+      }, true);
+    </script>
+  </head>
+  <body>
+    <div id="result"></div>
+  </body>
+</html>
