@@ -4,6 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="initial-scale=1.0,user-scalable=no" />
     <title>Touch Eventsサンプル</title>
+    <script src="js/simple_sample_device.js"></script>
     <script>
       window.document.addEventListener("touchstart", function(event){
         event.preventDefault();
@@ -29,6 +30,7 @@
         var result = document.getElementById("result");
           result.innerHTML = "";
       }, true);
+      simple_sample_device.open_client()
     </script>
   </head>
   <body>
