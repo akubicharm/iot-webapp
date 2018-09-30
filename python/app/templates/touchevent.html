@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Touch Event{% endblock %}
+{% block head %}
+  {{ super() }}
+    <script>
+      window.document.addEventListener("touchstart", function(event){
+        event.preventDefault();
+         
+        var result = document.getElementById("result");
+          result.innerHTML = 
+            "clientX:"+ event.touches[0].clientX+ "<br>" + 
+            "clientY:"+ event.touches[0].clientY;
+      }, true);
+       
+      window.document.addEventListener("touchmove", function(event){
+        event.preventDefault();
+         
+        var result = document.getElementById("result");
+          result.innerHTML = 
+            "clientX:"+ event.touches[0].clientX+ "<br>" + 
+            "clientY:"+ event.touches[0].clientY;
+      }, true);
+       
+      window.document.addEventListener("touchend", function(event){
+        event.preventDefault();
+         
+        var result = document.getElementById("result");
+          result.innerHTML = "";
+      }, true);
+      simple_sample_device.open_client()
+    </script>
+{% endblock %}
+{% block content %}
+    <div id="result"></div>
+{% endblock %}
