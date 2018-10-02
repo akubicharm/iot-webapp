@@ -4,6 +4,13 @@ IoT Hub SDK (Python版）を利用して、WebアプリケーションからIoT 
 
 アプリケーションのコンテナイメージは、Docker Hubで後悔しているので、Azure Web Appsやローカルで実行可能です。
 
+## アプリケーション
+### Touch Event
+
+コンテキストルート: `http://[ホスト名]/touchevent`
+
+マウスカーソルまたは、タブレットやスマホでのタッチイベントを検知して、X, Y 座標とタイムスタンプをIoT Hubに送信します。
+
 ## 参考
 * https://pypi.org/project/azure-iothub-device-client/
 * https://docs.microsoft.com/ja-jp/azure/iot-hub/iot-hub-device-sdk-platform-support
