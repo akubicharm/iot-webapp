@@ -43,6 +43,7 @@ docker run -it -p 80:80 -e CONNECTION_STRING=$CONNECTION_STRING akubicharm/iot-w
 1. Azure Portalの左側のメニューで**App Services**を選択します。
 1. App Serviceのビューの上部の「+Add」をクリックします。
 1. App Serviceの選択画面で**Web App**を選択します。
+![](./images/createwebapp.png)
 1. Web Appの詳細画面の下部の「Create」をクリックします。
 1. Web Appの作成ダイアログで必要なパラメータを入力して、「Create」をクリックします。
 
@@ -59,6 +60,8 @@ docker run -it -p 80:80 -e CONNECTION_STRING=$CONNECTION_STRING akubicharm/iot-w
 |Image source|Docker Hub|
 |Repository Access|Public|
 |Image and optional tag|akubicharm/iot-webapp-python:latest|
+
+作成したAzure Web Appの詳細画面に表示されたURLをコピーして、プロトコルをhttpsからhttpに変更してブラウザで開きます。
 
 
 ## コンテナイメージの作成
