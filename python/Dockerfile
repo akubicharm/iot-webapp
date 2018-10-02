@@ -1,4 +1,10 @@
-FROM tiangolo/uwsgi-nginx-flask:python3.6
+FROM python:2.7-jessie
+
+RUN apt-get update
+
+RUN apt-get -y install libboost-all-dev python-dev libboost-python-dev
+RUN pip install Flask
+RUN pip install azure-iothub-device-client
 
 COPY requirements.txt /
 
@@ -11,4 +17,4 @@ COPY app/ /app/
 WORKDIR /app
 
 ENV FLASK_APP=app.py
-CMD flask db upgrade && flask run -h 0.0.0.0 -p 5000
+CMD flask run -h 0.0.0.0 -p 80 

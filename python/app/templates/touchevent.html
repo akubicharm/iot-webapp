@@ -1,24 +1,73 @@
-{% extends "base.html" %}
-{% block title %}Touch Event{% endblock %}
-{% block head %}
-  {{ super() }}
-    <script>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no" />
+    <title>Touch Eventsサンプル</title>
+    <script type="text/javascript">
+      var ws = new WebSocket("ws://" + location.host + "/pipe");
+
+      ws.onmessage = function(e) {
+        document.getElementById("message").innerHTML = e.data;
+      }
+
+      ws.onclose = function(e) {
+        document.getElementById("message").innerHTML = e.data;
+      }
+
+      document.addEventListener("mousemove", function(event){
+        event.preventDefault();
+
+        var devName = document.getElementById("devicename").value;
+
+        var clientX = event.clientX;
+        var clientY = event.clientY;
+
+        var msgObj = {x: clientX, y: clientY, timestamp: new Date(), deviceName: devName};
+        var msg = JSON.stringify(msgObj);
+        ws.send(msg);
+         
+        var result = document.getElementById("result");
+        result.innerHTML =
+            "clientX:"+ clientX+ "<br>" + 
+            "clientY:"+ clientY;
+
+      }, true);
+
       window.document.addEventListener("touchstart", function(event){
         event.preventDefault();
+
+        var devName = document.getElementById("devicename").value;
+
+        var clientX = event.touchs[0].clientX;
+        var clientY = event.touchs[0].clientY;
+
+        var msgObj = {x: clientX, y: clientY, timestamp: new Date(), deviceName: devName};
+        var msg = JSON.stringify(msgObj);
+        ws.send(msg);
          
         var result = document.getElementById("result");
           result.innerHTML = 
-            "clientX:"+ event.touches[0].clientX+ "<br>" + 
-            "clientY:"+ event.touches[0].clientY;
+            "clientX:"+ clientX+ "<br>" + 
+            "clientY:"+ clientY;
       }, true);
        
       window.document.addEventListener("touchmove", function(event){
         event.preventDefault();
+
+        var devName = document.getElementById("devicename").value;
+
+        var clientX = event.touchs[0].clientX;
+        var clientY = event.touchs[0].clientY;
+
+        var msgObj = {x: clientX, y: clientY, timestamp: new Date(), deviceName: devName};
+        var msg = JSON.stringify(msgObj);
+        ws.send(msg);
          
         var result = document.getElementById("result");
           result.innerHTML = 
-            "clientX:"+ event.touches[0].clientX+ "<br>" + 
-            "clientY:"+ event.touches[0].clientY;
+            "clientX:"+ clientX+ "<br>" + 
+            "clientY:"+ clientY;
       }, true);
        
       window.document.addEventListener("touchend", function(event){
@@ -27,9 +76,10 @@
         var result = document.getElementById("result");
           result.innerHTML = "";
       }, true);
-      simple_sample_device.open_client()
     </script>
-{% endblock %}
-{% block content %}
+  </head>
+  <body>
+    <input type="text" id="devicename" value="sampledevice">
+    <div id="message"></div>
     <div id="result"></div>
-{% endblock %}
+</html>
