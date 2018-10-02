@@ -6,10 +6,17 @@ IoT Hub SDK (Python版）を利用して、WebアプリケーションからIoT 
 
 ## アプリケーション
 ### Touch Event
-
-コンテキストルート: `http://[ホスト名]/touchevent`
-
+![](./images/toucheventapp.png)
 マウスカーソルまたは、タブレットやスマホでのタッチイベントを検知して、X, Y 座標とタイムスタンプをIoT Hubに送信します。
+
+* コンテキストルート
+```
+http://[ホスト名]/touchevent
+```
+* 送信するメッセージ
+```
+{"x":564,"y":257,"timestamp":"2018-10-02T11:22:52.282Z","deviceName":"sampledevice"}
+```
 
 ## 参考
 * https://pypi.org/project/azure-iothub-device-client/
