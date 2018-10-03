@@ -54,6 +54,7 @@ docker run -it -p 80:80 -e CONNECTION_STRING=$CONNECTION_STRING akubicharm/iot-w
 
 ## Azure Web Appでの実行
 
+### Azure Web Appのデプロイ
 1. Azure Portalの左側のメニューで**App Services**を選択します。
 1. App Serviceのビューの上部の「+Add」をクリックします。
 1. App Serviceの選択画面で**Web App**を選択します。
@@ -65,18 +66,42 @@ docker run -it -p 80:80 -e CONNECTION_STRING=$CONNECTION_STRING akubicharm/iot-w
 |---|---|
 |App name|任意の名称。ただし、Azure全体で一意のFQDNになるようにする|
 |Subscription|利用するサブスクリプション|
-|Resource Group|Create newで新しいリソースグループを作成するか、既存のリソースグループを選択|
+|Resource Group|任意のリソースグループ|
 |OS|Linux|
 |Publish|Docker image|
 |App Service plan/Location|クリックして表示される右側のペインから選択|
 |Configure Container|クリックして詳細ダイアログを表示|
+
+Configure Containerの詳細入力内容
+
+|設定項目|設定値|
+|---|---|
+|Configure Containerの詳細入力内容||
 |コンテナ技術の選択|Single Container|
 |Image source|Docker Hub|
 |Repository Access|Public|
 |Image and optional tag|akubicharm/iot-webapp-python:latest|
 
+### Azure Web Appの設定
+Azure IoT Hubへ接続するための接続文字列を、コンテナの環境変数として設定します。
+
+1. Azure Portalの左側のメニューからApp Servicesを選択します。
+
+1. App Serviceの一覧からデプロイしたApp Serviceを選択します。
+
+1. App Serviceの左側のメニューのSettingsカテゴリの **Application settings** を選択します。
+
+1. 詳細画面の Application Settingで環境変数を設定します。
+![](./images/appsettings.png)
+
+|設定値|設定項目|
+|---|---|
+|CONNECTION_STSRING|IoT Hubの準備でコピーしておいた接続文字列|
+
+### Web Appへのアクセス
 作成したAzure Web Appの詳細画面に表示されたURLをコピーして、プロトコルをhttpsからhttpに変更してブラウザで開きます。
 
+初回アクセス時は、コンテナを起動するので少し時間がかかります。
 
 ## コンテナイメージの作成
 
