@@ -107,8 +107,12 @@ Azure IoT Hubへ接続するための接続文字列を、コンテナの環境�
 
 Docker Hubからコンテナイメージをpullして利用する場合は、このステップは飛ばしてください。
 
+libboost-python-dev を利用するにあたり、IoT Hub Device SDKの.soファイルが必要なので実行環境に合わせてビルドして置く必要があります。
+app/iothub_client.so に保存してあるのはLinuxバージョンです。
+
 ### ビルド
 Dockerfileの配置されているディレクトリに移動して、次のコマンドを実行します。
 ```
 docker build --rm -t iot-webapp-python .
 ```
+
